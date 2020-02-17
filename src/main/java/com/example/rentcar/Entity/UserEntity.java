@@ -1,9 +1,7 @@
 package com.example.rentcar.Entity;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 import javax.persistence.Entity;
@@ -17,6 +15,9 @@ import java.util.Collection;
 @Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class UserEntity  {
 
     @Id

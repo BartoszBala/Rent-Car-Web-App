@@ -32,7 +32,11 @@
                 <form:label path = "login">login</form:label>
             </td>
             <td><form:input path = "login" /></td>
-            <td><form:errors cssStyle="color: red" path = "login" cssClass = "error" /></td>
+            <td><form:errors cssStyle="color: red" path = "login" cssClass = "error" />
+                <c:if test="${invalidUser}">
+                    <p style="color: red">Użytkownik istnieje w bazie danych</p>
+                </c:if>
+            </td>
 
         </tr>
         <tr>

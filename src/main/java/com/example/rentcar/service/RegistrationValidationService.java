@@ -1,27 +1,47 @@
 package com.example.rentcar.service;
 
+import com.example.rentcar.mapper.MapperUser;
 import com.example.rentcar.model.RegistrationForm;
+import com.example.rentcar.repository.UserRepository;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-public class RegistrationValidationService implements Validator {
 
+@Service
+@NoArgsConstructor
+public class RegistrationValidationService {
 
-    @Override
-    public boolean supports(Class<?> paramClass) {
-        return RegistrationForm.class.equals(paramClass);
+    UserRepository userRepository;
+
+    @Autowired
+    public RegistrationValidationService(UserRepository userRep) {
+
+        this.userRepository = userRep;
     }
 
-    @Override
-    public void validate(Object obj, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login","login.required");
+    public boolean loginExist(String login) {
 
-        RegistrationForm registrationForm =(RegistrationForm) obj;
+        return userRepository.existsByLogin(login);
+    }
 
-        if(registrationForm.getLogin().isEmpty()){
-            errors.rejectValue("login","");
+
+    public void tryToRegisterUser(RegistrationForm registrationForm) {
+
+        try {
+            userRepository.save(MapperUser.mapToUserEntity(registrationForm));
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
         }
 
+
     }
+
+
 }

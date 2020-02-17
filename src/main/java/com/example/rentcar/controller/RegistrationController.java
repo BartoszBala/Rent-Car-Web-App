@@ -3,6 +3,8 @@ package com.example.rentcar.controller;
 
 import com.example.rentcar.model.RegistrationForm;
 import com.example.rentcar.repository.UserRepository;
+import com.example.rentcar.service.RegistrationValidationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,12 +17,14 @@ import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
+
     private UserRepository userRepository;
+    private RegistrationValidationService registrationValidationService;
 
-
-    public RegistrationController(UserRepository userRepository) {
+@Autowired
+    public RegistrationController(UserRepository userRepository, RegistrationValidationService registrationValidationService) {
         this.userRepository = userRepository;
-
+        this.registrationValidationService = registrationValidationService;
     }
 
     @GetMapping("/register")
@@ -33,14 +37,20 @@ public class RegistrationController {
         return "registration";
     }
     @PostMapping("/register")
-    public String processRegistration(@Valid RegistrationForm registrationForm, BindingResult bindingResult){//dodanie Valid super działa z adnotacjami z klasy
+    public String processRegistration(@Valid RegistrationForm registrationForm, BindingResult bindingResult, Model model){//dodanie Valid super działa z adnotacjami z klasy
 
        if(bindingResult.hasErrors())
        {bindingResult.getModel().entrySet().stream().forEach(x-> System.out.println(x));
            return "registration";
+       }else if(registrationValidationService.loginExist(registrationForm.getLogin()))
+       {
+           model.addAttribute("invalidUser",true);
+           return "registration";
        }
 
-//        model.addAttribute("registrationForm",new RegistrationForm());
+
+registrationValidationService.tryToRegisterUser(registrationForm);
+userRepository.findAll().forEach(System.out::println);
         return "redirect:/login";
 
     }
