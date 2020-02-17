@@ -25,14 +25,15 @@
 
 <%--@elvariable id="registrationForm" type=""--%>
 <form:form method = "POST" action = "/register" modelAttribute="registrationForm">
+<%--    <form:errors path = "*" cssClass = "errorblock" element = "div" />--%>
     <table>
         <tr>
             <td>
                 <form:label path = "login">login</form:label>
             </td>
-            <td>
-                <form:input path = "login" />
-            </td>
+            <td><form:input path = "login" /></td>
+            <td><form:errors cssStyle="color: red" path = "login" cssClass = "error" /></td>
+
         </tr>
         <tr>
             <td>
@@ -41,6 +42,7 @@
             <td>
                 <form:password path = "password" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "password" cssClass = "error" /></td>
         </tr>
         <tr>
             <td>
@@ -49,6 +51,7 @@
             <td>
                 <form:input path = "email" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "email" cssClass = "error" /></td>
         </tr>
         <tr>
             <td>
@@ -57,6 +60,7 @@
             <td>
                 <form:input path = "phoneNumber" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "phoneNumber" cssClass = "error" /></td>
         </tr>
         <tr>
             <td>
@@ -65,6 +69,7 @@
             <td>
                 <form:input path = "firstName" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "firstName" cssClass = "error" /></td>
         </tr>
         <tr>
             <td>
@@ -73,6 +78,7 @@
             <td>
                 <form:input path = "lastName" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "lastName" cssClass = "error" /></td>
         </tr>
         <tr>
         <td>
@@ -81,6 +87,7 @@
         <td>
             <form:input path = "street" />
         </td>
+            <td><form:errors cssStyle="color: red" path = "street" cssClass = "error" /></td>
     </tr>
         <tr>
             <td>
@@ -89,6 +96,7 @@
             <td>
                 <form:input path = "city" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "city" cssClass = "error" /></td>
         </tr>
         <tr>
             <td>
@@ -97,6 +105,7 @@
             <td>
                 <form:input path = "postCode" />
             </td>
+            <td><form:errors cssStyle="color: red" path = "postCode" cssClass = "error" /></td>
         </tr>
         <tr>
             <td colspan = "2">
