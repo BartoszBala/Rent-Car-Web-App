@@ -38,12 +38,12 @@ public class HomeController {
 
 
 
-    private List<CarEntity> getCarEntities() {
+   private <T> List<T> getCarEntities() {   //fixme
         Iterator iterator = carRepository.findAll().iterator();
-        List<CarEntity> cars = new ArrayList<>();
+        List<T> cars = new ArrayList<>();
 
         while (iterator.hasNext()) {
-            cars.add((CarEntity) iterator.next());
+            cars.add((T) iterator.next());
         }
         return cars;
     }

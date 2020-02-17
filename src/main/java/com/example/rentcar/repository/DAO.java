@@ -7,6 +7,7 @@ import com.example.rentcar.model.CarType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,15 +16,19 @@ public class DAO {
 
     private CarRepository carRepository;
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
-@Autowired
-    public DAO(CarRepository carRepository, UserRepository userRepository) {
+    public DAO(CarRepository carRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.carRepository = carRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
+    @Autowired
+
+
     @EventListener(ApplicationReadyEvent.class)
-    public void createMockDataBases(){
+    public void createMockDataBases() {
         CarEntity carEntity1 = CarEntity.builder().brand("AUDI").model("A4").carColour(CarColour.BLACK).id(1L)
                 .millage(10000).price(100).carType(CarType.COMBI).vin("121453iu111").power(200)
                 .imagePath("/resources/static/images/AudiA4.png").build();
@@ -32,8 +37,15 @@ public class DAO {
         carRepository.save(carEntity1);
         carRepository.save(carEntity2);
 
-    UserEntity userEntity = UserEntity.builder().login("janek").password("janek").street("Łowicka 1").city("Skierniewice").postCode("90-000").phoneNumber("+48 900900900")
-            .email("janek@wp.pl").firstName("Jan").lastName("Kot").build();
-    userRepository.save(userEntity);
+this.userRepository.deleteAll();
+
+        UserEntity userEntity = UserEntity.builder().login("janek").password(passwordEncoder.encode("janek")).street("Łowicka 1").city("Skierniewice").postCode("90-000").phoneNumber("+48 900900900")
+                .email("janek@wp.pl").firstName("Jan").lastName("Kot").roles("USER").permissions("").actived(1).build();
+        UserEntity admin = UserEntity.builder().login("admin").password(passwordEncoder.encode("admin1")).roles("ADMIN").permissions("ACCESS_TEST1,ACCESS_TES2").actived(1).build();
+        UserEntity employee = UserEntity.builder().login("menager").password(passwordEncoder.encode("menager1")).roles("MANAGER").permissions("ACCESS_TEST1").actived(1).build();
+        //save to db
+        userRepository.save(userEntity);
+        userRepository.save(admin);
+        userRepository.save(employee);
     }
 }
