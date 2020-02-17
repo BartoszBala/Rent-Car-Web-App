@@ -40,7 +40,7 @@ public class RegistrationController {
     public String processRegistration(@Valid RegistrationForm registrationForm, BindingResult bindingResult, Model model){//dodanie Valid super działa z adnotacjami z klasy
 
        if(bindingResult.hasErrors())
-       {bindingResult.getModel().entrySet().stream().forEach(x-> System.out.println(x));
+       {
            return "registration";
        }else if(registrationValidationService.loginExist(registrationForm.getLogin()))
        {
