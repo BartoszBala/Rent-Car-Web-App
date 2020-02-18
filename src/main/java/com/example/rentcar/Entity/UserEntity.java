@@ -5,10 +5,7 @@ import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,6 +35,8 @@ public class UserEntity {
     private int actived;
     private String roles = "";
     private String permissions="";
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    private List<OrderEntity> orderList;
 
     public UserEntity(String login, String password, String roles, String permissions) {
         PasswordEncoder passwordEncoder;

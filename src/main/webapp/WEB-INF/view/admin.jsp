@@ -19,7 +19,7 @@
 
 </head>
 <body>
-
+<%@ include file="/WEB-INF/components/header.jsp" %>
 <table class="table table-striped">
     <thead>
     <tr>

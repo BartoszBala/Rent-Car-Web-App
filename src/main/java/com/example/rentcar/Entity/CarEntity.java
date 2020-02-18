@@ -31,4 +31,5 @@ public class CarEntity {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL )
     private List<OrderEntity> orderList;
 
+
 }

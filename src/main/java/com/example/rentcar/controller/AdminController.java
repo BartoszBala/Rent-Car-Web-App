@@ -5,6 +5,9 @@ import com.example.rentcar.Entity.OrderEntity;
 import com.example.rentcar.repository.OrderRepository;
 import com.example.rentcar.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +31,10 @@ public class AdminController {
     public String forwardToAdminPage(Model model){
 
         List<OrderEntity> orders = new ArrayList<>();
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         orderRepository.findAll().forEach(order->orders.add(order));
         model.addAttribute("orders",orders);
-
+        model.addAttribute("isAuthenticated",!(authentication instanceof AnonymousAuthenticationToken));
         return "admin";
     }
 }
