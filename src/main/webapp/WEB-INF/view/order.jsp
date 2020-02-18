@@ -39,7 +39,14 @@
                     <fmt:setLocale value="pl_PL"/>
                     <div class="col-md-3"><fmt:formatNumber type="currency" minFractionDigits="2">
                         ${car.price}</fmt:formatNumber>
-                        <form action="/prepare-order" method="post" modelAttribute="carEntity">
+                        <form action="/add-order" method="post" modelAttribute="carEntity" modelAttribute="orderFormDto">
+                            <label for="dateOfStartRentCar;">Data wypożyczenia:</label>
+                            <input type="date" id="dateOfStartRentCar;" name="dateOfStartRentCar"><br>
+                            <label for="dateOfFinishRentCar">Data zwrotu auta:</label>
+                            <input type="date" id="dateOfFinishRentCar" name="dateOfFinishRentCar"><br>
+                            <label for="description">Dodadkowe informację:</label>
+                            <input type="text" id="description" name="additionalInformation"><br>
+
                             <button type="submit" class="btn btn-primary"name="id" value="${car.id}">Złóż zamówienie</button>
                         </form>
                     </div>
@@ -50,14 +57,14 @@
 
 
 
-<form action="/add-order" method="POST" modelAttribute="order">
-    <label for="dateOfStartRentCar;">Data wypożyczenia:</label>
-    <input type="date" id="dateOfStartRentCar;" name="dateOfStartRentCar;"><br>
-    <label for="dateOfFinishRentCar">Data zwrotu auta:</label>
-    <input type="date" id="dateOfFinishRentCar" name="dateOfFinishRentCar"><br>
-    <label for="description">Dodadkowe informację:</label>
-    <input type="text" id="description" name="additionalInformation"><br>
-    <button type="submit" class="btn btn-primary">Dodaj zamówienie</button>
+<form action="/add-order" method="POST" modelAttribute="orderFormDto">
+<%--    <label for="dateOfStartRentCar;">Data wypożyczenia:</label>--%>
+<%--    <input type="date" id="dateOfStartRentCar;" name="dateOfStartRentCar"><br>--%>
+<%--    <label for="dateOfFinishRentCar">Data zwrotu auta:</label>--%>
+<%--    <input type="date" id="dateOfFinishRentCar" name="dateOfFinishRentCar"><br>--%>
+<%--    <label for="description">Dodadkowe informację:</label>--%>
+<%--    <input type="text" id="description" name="additionalInformation"><br>--%>
+<%--    <button type="submit" class="btn btn-primary">Dodaj zamówienie</button>--%>
 </form>
 
 

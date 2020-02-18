@@ -34,8 +34,11 @@ public class DAO {
                 .imagePath("/resources/static/images/AudiA4.png").build();
         CarEntity carEntity2 = CarEntity.builder().brand("BMW").model("X3").carColour(CarColour.RED).id(2L)
                 .millage(12000).price(200).carType(CarType.SUV).vin("121153iu111").power(150).imagePath("/resources/static/images/bmwX3.png").build();
+        CarEntity carEntity3 = CarEntity.builder().brand("OPEL").model("TRAFFIC").carColour(CarColour.WHITE).id(3L)
+                .millage(12500).price(300).carType(CarType.BUS).vin("235153iu1d11").power(160).imagePath("/resources/static/images/opel.png").build();
         carRepository.save(carEntity1);
         carRepository.save(carEntity2);
+        carRepository.save(carEntity3);
 
 this.userRepository.deleteAll();
 

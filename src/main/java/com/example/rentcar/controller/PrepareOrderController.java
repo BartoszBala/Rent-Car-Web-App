@@ -2,6 +2,7 @@ package com.example.rentcar.controller;
 
 
 import com.example.rentcar.Entity.CarEntity;
+import com.example.rentcar.model.OrderFormDto;
 import com.example.rentcar.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,17 +18,18 @@ import java.util.List;
 public class PrepareOrderController {
 
     CarRepository carRepository;
+    OrderFormDto orderFormDto;
 
-    @Autowired
-    public PrepareOrderController(CarRepository carRepository) {
+    public PrepareOrderController(CarRepository carRepository, OrderFormDto orderFormDto) {
         this.carRepository = carRepository;
+        this.orderFormDto = orderFormDto;
     }
 
     @PostMapping("/prepare-order")
     public String doOrder(Model model, CarEntity carEntity) {
 
         System.out.println(carEntity);
-//        System.out.println((Long)model.getAttribute("id"));
+model.addAttribute("orderFormDto",orderFormDto);
 CarEntity car = carRepository.findById(carEntity.getId()).get();
         System.out.println(car.getId());
         model.addAttribute("car",car );

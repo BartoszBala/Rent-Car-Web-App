@@ -51,7 +51,7 @@ public class RegistrationController {
 
 registrationValidationService.tryToRegisterUser(registrationForm);
 userRepository.findAll().forEach(System.out::println);
-        return "redirect:/login";
+        return "redirect:/login2";
 
     }
 }

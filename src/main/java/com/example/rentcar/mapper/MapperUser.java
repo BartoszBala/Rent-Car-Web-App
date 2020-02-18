@@ -32,6 +32,9 @@ public class MapperUser {
                 .postCode(registrationForm.getPostCode())
                 .street(registrationForm.getStreet())
                 .city(registrationForm.getCity())
+                .actived(1)
+                .roles("USER")
+                .permissions("")
                 .build();
     }
 
