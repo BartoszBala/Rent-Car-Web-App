@@ -23,6 +23,7 @@ public class OrderEntity {
     private LocalDate dateOfOrder;
     private LocalDate dateOfStartRentCar;
     private LocalDate dateOfFinishRentCar;
+    private String additionalInformation;
 
 
 

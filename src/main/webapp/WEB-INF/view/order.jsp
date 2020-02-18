@@ -19,8 +19,46 @@
 
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <%--            <%@include file="/WEB-INF/component/filter.jsp"%>--%>
+
+            miejsce na filter
+        </div>
+        <div class="col-md-10 offset-md-2 content">
+                <div class="row">
+                    <div class="col-md-3"><img src="${car.imagePath}" width="222" height="192"/></div>
+                    <div class="col-md-4">
+                        <h3><a href="/show-car?id=${car.id}" style="color: #b6b8b6">${car.brand} ${car.model}</a></h3>
+                        <h6>Typ: ${car.carType}</h6>
+                        <h6>Przebieg: ${car.millage}</h6>
+                        <h6>Moc [KM]: ${car.power}</h6>
+
+                    </div>
+                    <fmt:setLocale value="pl_PL"/>
+                    <div class="col-md-3"><fmt:formatNumber type="currency" minFractionDigits="2">
+                        ${car.price}</fmt:formatNumber>
+                        <form action="/prepare-order" method="post" modelAttribute="carEntity">
+                            <button type="submit" class="btn btn-primary"name="id" value="${car.id}">Złóż zamówienie</button>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
 
 
+
+<form action="/add-order" method="POST" modelAttribute="order">
+    <label for="dateOfStartRentCar;">Data wypożyczenia:</label>
+    <input type="date" id="dateOfStartRentCar;" name="dateOfStartRentCar;"><br>
+    <label for="dateOfFinishRentCar">Data zwrotu auta:</label>
+    <input type="date" id="dateOfFinishRentCar" name="dateOfFinishRentCar"><br>
+    <label for="description">Dodadkowe informację:</label>
+    <input type="text" id="description" name="additionalInformation"><br>
+    <button type="submit" class="btn btn-primary">Dodaj zamówienie</button>
+</form>
 
 
 <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>

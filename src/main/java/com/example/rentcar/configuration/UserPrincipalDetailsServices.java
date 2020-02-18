@@ -20,6 +20,11 @@ public class UserPrincipalDetailsServices implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserEntity userEntity = this.userRepository.findByLogin(s);
+
+
+        if(userEntity==null){
+            throw new UsernameNotFoundException("No user found for "+s+".");
+        }
         UserPrincipal userPrincipal = new UserPrincipal(userEntity);
 
         return userPrincipal;

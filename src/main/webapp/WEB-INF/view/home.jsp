@@ -62,7 +62,7 @@
                     <fmt:setLocale value="pl_PL"/>
                     <div class="col-md-3"><fmt:formatNumber type="currency" minFractionDigits="2">
                         ${car.price}</fmt:formatNumber>
-                        <form action="/prepare-order" method="post">
+                        <form action="/prepare-order" method="post" modelAttribute="carEntity">
                             <button type="submit" class="btn btn-primary"name="id" value="${car.id}">Złóż zamówienie</button>
                         </form>
                     </div>
