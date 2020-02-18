@@ -30,17 +30,18 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@Valid LoginForm loginForm, BindingResult bindingResult, Model model) {
 
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-        else if(loginService.isCorrectUser(loginForm))
-        {
-            return "redirect:/home";
-        }else{
-            model.addAttribute("invalidLogin",true);
-            return "login";
-
-        }
+//        if (bindingResult.hasErrors()) {
+//            return "login";
+//        }
+//        else if(loginService.isCorrectUser(loginForm))
+//        {
+//            return "redirect:/home";
+//        }else{
+//            model.addAttribute("invalidLogin",true);
+//            return "login";
+//
+//        }
+        return "login";
 
 
     }

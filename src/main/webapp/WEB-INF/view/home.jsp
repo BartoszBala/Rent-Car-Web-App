@@ -32,8 +32,10 @@
             <li><a href="/all">ALL USER</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Rejestracja</a></li>
+
+            <c:if test="${!isAuthenticated}"> <li><a href="/login2"><span class="glyphicon glyphicon-log-in"></span> Login</a></li></c:if>
+            <c:if test="${isAuthenticated}">><li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logut</a></li></c:if>
         </ul>
     </div>
 </nav>
