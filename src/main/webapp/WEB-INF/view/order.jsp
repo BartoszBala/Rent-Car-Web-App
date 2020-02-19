@@ -19,6 +19,7 @@
 
 </head>
 <body>
+<%@ include file="/WEB-INF/components/header.jsp" %>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
@@ -40,8 +41,16 @@
                     <div class="col-md-3"><fmt:formatNumber type="currency" minFractionDigits="2">
                         ${car.price}</fmt:formatNumber>
                         <form action="/add-order" method="post" modelAttribute="carEntity" modelAttribute="orderFormDto">
+
+
+                            <c:if test="${errorStartDate}">
+                                <p style="color: red">Pick up day must be later or equal from today</p>
+                            </c:if>
                             <label for="dateOfStartRentCar;">Data wypożyczenia:</label>
                             <input type="date" id="dateOfStartRentCar;" name="dateOfStartRentCar"><br>
+                            <c:if test="${errorDate}">
+                                <p style="color: red">Fields can not be empty. invalid date, pick up must be earlier than drop-off car</p>
+                            </c:if>
                             <label for="dateOfFinishRentCar">Data zwrotu auta:</label>
                             <input type="date" id="dateOfFinishRentCar" name="dateOfFinishRentCar"><br>
                             <label for="description">Dodadkowe informację:</label>

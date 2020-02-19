@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<body onload='document.loginForm.username.focus();'>
-<h1>Spring Security 5 - Login Form</h1>
+<body>
+<%--onload='document.loginForm.username.focus();'--%>
+<%--<%@ include file="/WEB-INF/components/header.jsp" %>--%>
+
 
 <c:if test="${not empty errorMessge}"><div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessge}</div></c:if>
 

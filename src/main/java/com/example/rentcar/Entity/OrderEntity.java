@@ -4,6 +4,7 @@ package com.example.rentcar.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -28,6 +29,7 @@ public class OrderEntity {
     private LocalDate dateOfStartRentCar;
     private LocalDate dateOfFinishRentCar;
     private String additionalInformation;
+    private BigDecimal orderCost;
 
 
 

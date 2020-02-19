@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home.html", "/register").permitAll()
                 .antMatchers("/menagment").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/all","/prepare-order").authenticated()
+                .antMatchers("/all","/prepare-order","/orders-history").authenticated()
                 .antMatchers("/orderManager").hasAuthority("ACCESS_TEST1")
                 .antMatchers("/api/public/users").hasRole("ADMIN")
                 .and()

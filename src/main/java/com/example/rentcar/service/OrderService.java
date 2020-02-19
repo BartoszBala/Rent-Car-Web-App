@@ -1,27 +1,30 @@
 package com.example.rentcar.service;
 
-import com.example.rentcar.Entity.OrderEntity;
-import com.example.rentcar.repository.CarRepository;
-import com.example.rentcar.repository.OrderRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import com.example.rentcar.Entity.CarEntity;
 
+import java.time.temporal.ChronoUnit;
+
+import com.example.rentcar.model.OrderFormDto;
+
+import org.springframework.stereotype.Service;
+
+
+import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDate;
+
+import static java.time.temporal.ChronoUnit.DAYS;
+
 
 @Service
 public class OrderService {
 
-    private OrderRepository orderRepo;
-    private CarRepository carRepository;
 
-    public void createOrder(Model model){
+    public BigDecimal calculateCostOfOrder(OrderFormDto orderFormDto, CarEntity carEntity) {
 
-        OrderEntity orderEntity =OrderEntity.builder()
-                .carEntity(carRepository.findById((Long) model
-                        .getAttribute("id")).get()).dateOfOrder(LocalDate.now()).build(); //fixme
+        long days = DAYS.between( LocalDate.parse(orderFormDto.getDateOfStartRentCar()),LocalDate.parse(orderFormDto.getDateOfFinishRentCar()));
 
-        orderRepo.save(orderEntity);
-
+        return BigDecimal.valueOf(days).multiply(BigDecimal.valueOf(carEntity.getPrice()));
 
 
     }

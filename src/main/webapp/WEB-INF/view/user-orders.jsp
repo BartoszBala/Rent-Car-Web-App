@@ -20,27 +20,28 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/components/header.jsp" %>
+
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Client Name</th>
+        <th scope="col">No.</th>
         <th scope="col">Date of Order</th>
-        <th scope="col">Return Day</th>
+        <th scope="col">pick up Day</th>
+        <th scope="col">drop off Day</th>
         <th scope="col">Car</th>
-        <th scope="col">Information From Client</th>
+        <th scope="col">Total Cost</th>
     </tr>
     </thead>
 
     <tbody>
     <c:set var="counter" value="1"/>
-    <c:forEach items="${orders}" var="order">
+    <c:forEach items="${userOrders}" var="order">
         <tr ${task.completed?'style="background-color: lightgreen"':""}>
-            <th scope="row">${order.id}</th>
-            <td>  ${order.userEntity.firstName}  ${order.userEntity.lastName} </td>
+            <th scope="row">${counter}</th>
+            <td>  ${order.dateOfOrder}  </td>
             <td>${order.dateOfStartRentCar}</td>
             <td>${order.dateOfFinishRentCar}</td>
-            <td>${order.carEntity.brand}</td>
+            <td>${order.carEntity.brand} ${order.carEntity.model}</td>
             <td>${order.additionalInformation}</td>
             <td>
 
@@ -64,7 +65,6 @@
 
     </tbody>
 </table>
-
 
 
 <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -2,5 +2,5 @@ package com.example.rentcar.model;
 
 public enum CarType {
 
-    COMBI,SEDAN,SUV,BUS
+    COMBI,SEDAN,SUV,BUS,SPORT
 }

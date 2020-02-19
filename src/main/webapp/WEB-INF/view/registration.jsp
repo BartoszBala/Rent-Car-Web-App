@@ -20,9 +20,18 @@
 
 </head>
 <body>
-<h1>Rejestrowanie użytkownika</h1>
+<%@ include file="/WEB-INF/components/header.jsp" %>
 
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 sidebar">
+            <%--            <%@include file="/WEB-INF/component/filter.jsp"%>--%>
+
+<%--            miejsce na filter--%>
+        </div>
+        <div class="col-md-4 offset-md-4 content">
+            <h1>Rejestrowanie użytkownika</h1>
 <%--@elvariable id="registrationForm" type=""--%>
 <form:form method = "POST" action = "/register" modelAttribute="registrationForm">
 <%--    <form:errors path = "*" cssClass = "errorblock" element = "div" />--%>
@@ -120,6 +129,10 @@
 
     </table>
 </form:form>
+        </div>
+    </div>
+</div>
+
 
 
 <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
