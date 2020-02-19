@@ -29,6 +29,7 @@
         <th scope="col">Return Day</th>
         <th scope="col">Car</th>
         <th scope="col">Information From Client</th>
+        <th scope="col">Cost</th>
     </tr>
     </thead>
 
@@ -42,6 +43,7 @@
             <td>${order.dateOfFinishRentCar}</td>
             <td>${order.carEntity.brand}</td>
             <td>${order.additionalInformation}</td>
+            <td>${order.orderCost}</td>
             <td>
 
                 <c:if test="${!task.completed}">

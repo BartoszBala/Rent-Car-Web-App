@@ -65,11 +65,13 @@ public class AddOrderController {
 
 
                 BigDecimal costOfOrder = orderService.calculateCostOfOrder(orderFormDto, carRepository.findById(carEntity.getId()).get()); // fixme nie przekazuj całego obiektu a tylko price
+                orderEntity.setOrderCost(costOfOrder);
                 model.addAttribute("car", carRepository.findById(carEntity.getId()).get());
                 model.addAttribute("cost", costOfOrder);
                 model.addAttribute("orderNumber", orderRepository.save(orderEntity).getId());
                 return "order-confirmation";
-            } } else {
+            }
+        } else {
 
             model.addAttribute("car", carRepository.findById(carEntity.getId()).get());
             model.addAttribute("orderFormDto", orderFormDto);
@@ -110,20 +112,20 @@ public class AddOrderController {
             }
         } catch (DateTimeParseException e) {
 
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return false;
     }
 
     protected boolean pickUpDateIsCorrect(OrderFormDto orderFormDto) {
-try{
-        if (LocalDate.parse(orderFormDto.getDateOfStartRentCar()).compareTo(LocalDate.now()) >= 0) {
+        try {
+            if (LocalDate.parse(orderFormDto.getDateOfStartRentCar()).compareTo(LocalDate.now()) >= 0) {
 
-            return true;
-        }}
-catch (DateTimeParseException e){
-    e.printStackTrace();
-}
+                return true;
+            }
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }

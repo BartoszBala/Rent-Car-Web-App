@@ -42,7 +42,7 @@
             <td>${order.dateOfStartRentCar}</td>
             <td>${order.dateOfFinishRentCar}</td>
             <td>${order.carEntity.brand} ${order.carEntity.model}</td>
-            <td>${order.additionalInformation}</td>
+            <td>${order.orderCost}</td>
             <td>
 
                 <c:if test="${!task.completed}">

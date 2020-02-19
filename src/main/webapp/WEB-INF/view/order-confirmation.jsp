@@ -37,6 +37,7 @@
                     <h6>Moc [KM]: ${car.power}</h6>
 
                 </div>
+                <h4>Cost per Day </h4>
                 <fmt:setLocale value="pl_PL"/>
                 <div class="col-md-3"><fmt:formatNumber type="currency" minFractionDigits="2">
                     ${car.price}</fmt:formatNumber>
@@ -44,8 +45,8 @@
                 </div>
                 <div class="col-md-3">
                     <h4>Order successful</h4>
-                    <h2>Cost: ${cost}</h2>
-                    <h2>Order Number: ${orderNumber}</h2>
+                    <h2>Total ost: ${cost}</h2>
+                    <h2>Your Number of order: ${orderNumber}</h2>
 
                 </div>
             </div>
