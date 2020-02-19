@@ -4,7 +4,6 @@
             <a class="navbar-brand" href="/home">RentCar</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
             <li><a href="/menagment">Menagment</a></li>
             <li><a href="/admin">Admin</a></li>
             <li><a href="/orders-history">Your orders</a></li>
