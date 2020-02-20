@@ -62,7 +62,6 @@ public class HomeController {
         model.addAttribute("filterDto", filterDto);
         model.addAttribute("isAuthenticated", !(authentication instanceof AnonymousAuthenticationToken));
 
-
         return "home";
     }
 

@@ -11,7 +11,7 @@
     <table>
         <tbody>
 
-        <tr><td style="color: blue">Choose type of car<br></td></tr>
+        <tr><td style="color: blue">Choose Type of car<br></td></tr>
         <c:forEach items="${carTypes}" var="type" >
                 <tr>
                     <td><form:checkbox path="carTypes" value="${type}" label="${type}" checked="${selectedTypes.contains(type)?true:''}" /></td>
