@@ -1,5 +1,6 @@
 package com.example.rentcar.Entity;
 
+import com.example.rentcar.model.Brand;
 import com.example.rentcar.model.CarColour;
 import com.example.rentcar.model.CarType;
 import lombok.*;
@@ -20,7 +21,7 @@ public class CarEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String vin;
-    private String brand;
+    private Brand brand;
     private String model;
     private CarType carType;
     private double power;

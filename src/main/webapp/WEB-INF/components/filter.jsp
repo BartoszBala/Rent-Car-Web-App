@@ -10,14 +10,25 @@
 
     <table>
         <tbody>
-            <c:forEach items="${brands}" var="brand" >
+
+        <tr><td style="color: blue">Choose type of car<br></td></tr>
+        <c:forEach items="${carTypes}" var="type" >
                 <tr>
-                    <td><form:checkbox path="carTypes" value="${brand}" label="${brand}" checked="${selectedTypes.contains(brand)?true:''}" /></td>
+                    <td><form:checkbox path="carTypes" value="${type}" label="${type}" checked="${selectedTypes.contains(type)?true:''}" /></td>
                 </tr>
             </c:forEach>
 
+        <tr><td style="color: blue">Choose Brand of car<br></td></tr>
+       <c:forEach items="${carBrands}" var="brand" >
 
-<tr >
+            <tr>
+                <td><form:checkbox path="brands" value="${brand}" label="${brand}" checked="${selectedBrands.contains(brand)?true:''}" /></td>
+            </tr>
+        </c:forEach>
+
+
+
+        <tr >
             <td colspan="2">
                 <input type="submit" value="Filter" />
             </td>
