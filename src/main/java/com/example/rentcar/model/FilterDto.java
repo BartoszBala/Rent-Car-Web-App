@@ -14,5 +14,6 @@ public class FilterDto {
 
     @NotBlank(message = "pole nie może być puste")
   List<String> carTypes;
+    List<String> brand;
 }
 

@@ -10,12 +10,12 @@
 
     <table>
         <tbody>
+            <c:forEach items="${brands}" var="brand" >
+                <tr>
+                    <td><form:checkbox path="carTypes" value="${brand}" label="${brand}" checked="${selectedTypes.contains(brand)?true:''}" /></td>
+                </tr>
+            </c:forEach>
 
-
-            <tr>
-              <td> <form:checkboxes path="carTypes"   items="${brands}"/>
-              </td>
-            </tr>
 
 <tr >
             <td colspan="2">

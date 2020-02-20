@@ -3,6 +3,7 @@ package com.example.rentcar.controller;
 import com.example.rentcar.Entity.CarEntity;
 import com.example.rentcar.model.Car;
 import com.example.rentcar.model.CarType;
+import com.example.rentcar.model.CheckboxesDto;
 import com.example.rentcar.model.FilterDto;
 import com.example.rentcar.repository.CarRepository;
 import com.example.rentcar.service.UserContextService;
@@ -37,43 +38,40 @@ public class HomeController {
 
         CarType[] carTypes = CarType.values();
 
-
         model.addAttribute("brands", Arrays.asList(carTypes));
-
+        model.addAttribute("selectedTypes",Arrays.asList(carTypes));
         FilterDto filterDto = new FilterDto();
 
 
-        if (( model.getAttribute("filterDto")) != null)
-            {  List<String> types =((FilterDto) model.getAttribute("filterDto")).getCarTypes() ;
+        if ((model.getAttribute("filterDto")) != null) {
+            List<String> types = ((FilterDto) model.getAttribute("filterDto")).getCarTypes();
 
-                List<CarType> selectedBrands = types.stream().map(t -> CarType.valueOf(t)).collect(Collectors.toList());
-                System.out.println(selectedBrands.size());
-                model.addAttribute("cars", carRepository.findByCarTypeIn(selectedBrands));
-            }
-        else{
+            List<CarType> carTypeList = types.stream().map(t -> CarType.valueOf(t)).collect(Collectors.toList());
+            System.out.println(carTypeList.size());
+            model.addAttribute("cars", carRepository.findByCarTypeIn(carTypeList));
+            model.addAttribute("selectedTypes",carTypeList);
+        } else {
             model.addAttribute("cars", cars);
         }
-            model.addAttribute("filterDto", filterDto);
+        model.addAttribute("filterDto", filterDto);
+        model.addAttribute("isAuthenticated", !(authentication instanceof AnonymousAuthenticationToken));
 
-            model.addAttribute("isAuthenticated", !(authentication instanceof AnonymousAuthenticationToken));
 
-
-            return "home";
-        }
+        return "home";
+    }
 
 
     @PostMapping("/home")
-    public String doPost(FilterDto filterDto, Model model){
+    public String doPost(FilterDto filterDto, Model model) {
 
-model.addAttribute("filterDto", filterDto);
+        model.addAttribute("filterDto", filterDto);
 
 
         return welcome(model);
     }
 
 
-
-   private <T> List<T> getCarEntities() {   //fixme
+    private <T> List<T> getCarEntities() {   //fixme
         Iterator iterator = carRepository.findAll().iterator();
         List<T> cars = new ArrayList<>();
 
@@ -82,4 +80,7 @@ model.addAttribute("filterDto", filterDto);
         }
         return cars;
     }
+
+
+
 }
