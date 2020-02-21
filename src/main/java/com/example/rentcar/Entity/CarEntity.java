@@ -3,6 +3,7 @@ package com.example.rentcar.Entity;
 import com.example.rentcar.model.Brand;
 import com.example.rentcar.model.CarColour;
 import com.example.rentcar.model.CarType;
+import com.example.rentcar.model.OrderStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public class CarEntity {
     private String imagePath;
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL )
     private List<OrderEntity> orderList;
+
 
 
 }

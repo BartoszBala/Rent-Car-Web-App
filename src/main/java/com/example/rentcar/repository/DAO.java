@@ -6,6 +6,7 @@ import com.example.rentcar.Entity.UserEntity;
 import com.example.rentcar.model.Brand;
 import com.example.rentcar.model.CarColour;
 import com.example.rentcar.model.CarType;
+import com.example.rentcar.model.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -72,12 +73,16 @@ public class DAO {
         userRepository.save(admin);
         userRepository.save(employee);
         this.orderRepository.deleteAll();
-        OrderEntity orderEntity1 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(2)).dateOfStartRentCar(LocalDate.now().plusDays(4)).dateOfFinishRentCar(LocalDate.now().plusDays(7))
-                .carEntity(carEntity2).userEntity(userEntity1).additionalInformation("I nead automatical gearbox").orderCost(BigDecimal.valueOf(500.5)).build();
-        OrderEntity orderEntity2 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(3)).dateOfStartRentCar(LocalDate.now().plusDays(7)).dateOfFinishRentCar(LocalDate.now().plusDays(15))
-                .carEntity(carEntity6).userEntity(userEntity2).additionalInformation("I nead 9 seats in bus").orderCost(BigDecimal.valueOf(200)).build();
+        OrderEntity orderEntity1 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(6)).dateOfStartRentCar(LocalDate.now().minusDays(5)).dateOfFinishRentCar(LocalDate.now().minusDays(3))
+                .carEntity(carEntity2).userEntity(userEntity1).additionalInformation("I nead automatical gearbox").orderCost(BigDecimal.valueOf(500.5)).orderCompleted(true).orderStatus(OrderStatus.COMPLETED).build();
+        OrderEntity orderEntity2 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(20)).dateOfStartRentCar(LocalDate.now().minusDays(15)).dateOfFinishRentCar(LocalDate.now().minusDays(12))
+                .carEntity(carEntity6).userEntity(userEntity2).additionalInformation("I nead 9 seats in bus").orderCost(BigDecimal.valueOf(1000)).orderCompleted(true).orderStatus(OrderStatus.COMPLETED).build();
+        OrderEntity orderEntity3 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(3)).dateOfStartRentCar(LocalDate.now().minusDays(2)).dateOfFinishRentCar(LocalDate.now().plusDays(7))
+                .carEntity(carEntity6).userEntity(userEntity2).additionalInformation("I nead 9 seats in bus").orderCost(BigDecimal.valueOf(1200)).orderStatus(OrderStatus.INPROGRESS).build();
+
         orderRepository.save(orderEntity1);
         orderRepository.save(orderEntity2);
+        orderRepository.save(orderEntity3);
 
     }
 }

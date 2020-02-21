@@ -36,7 +36,7 @@
     <tbody>
     <c:set var="counter" value="1"/>
     <c:forEach items="${userOrders}" var="order">
-        <tr ${task.completed?'style="background-color: lightgreen"':""}>
+        <tr ${order.orderCompleted?'style="background-color: lightgreen"':""}>
             <th scope="row">${counter}</th>
             <td>  ${order.dateOfOrder}  </td>
             <td>${order.dateOfStartRentCar}</td>
@@ -45,17 +45,20 @@
             <td>${order.orderCost}</td>
             <td>
 
-                <c:if test="${!task.completed}">
-                    <form action="/demo/mark-as-done" method="POST">
-                        <button class="btn btn-success" name="taskId" value="${task.id}">Completed</button>
+                <c:if test="${!order.orderCompleted}">
+                    <form action="/updateOrder" method="POST" modelAttribute="orderId">
+                        <button class="btn btn-success" name="orderId" value="${order.id}">Change order</button>
                     </form>
                 </c:if>
             </td>
 
             <td>
-                <form action="/delete" method="POST">
-                    <button class="btn btn-success" name="taskId" value="${task.id}">Remove</button>
+                <c:if test="${!order.orderCompleted}">
+                <form action="/cancel" method="POST" modelAttribute="orderId">
+                    <button class="btn btn-success" name="orderId" value="${order.id}">Cancel Order</button>
                 </form>
+                </c:if>
+
             </td>
 
 

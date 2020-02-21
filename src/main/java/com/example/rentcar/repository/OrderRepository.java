@@ -12,4 +12,5 @@ public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
 
     List<OrderEntity> findAllByUserEntity(UserEntity userEntity);
 
+
 }

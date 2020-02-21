@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -50,9 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home.html", "/register").permitAll()
                 .antMatchers("/menagment").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/all","/prepare-order","/orders-history").authenticated()
+                .antMatchers("/all", "/prepare-order", "/orders-history").authenticated()
                 .antMatchers("/orderManager").hasAuthority("ACCESS_TEST1")
                 .antMatchers("/api/public/users").hasRole("ADMIN")
+//                .and().exceptionHandling().accessDeniedPage("/WEB-INF/view/accessDenied.jsp")
+                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler())
                 .and()
                 .formLogin()
                 .loginPage("/login2")
@@ -61,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home");
 
 
-//                httpBasic();
     }
 
 
@@ -69,6 +71,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
     }
 
 

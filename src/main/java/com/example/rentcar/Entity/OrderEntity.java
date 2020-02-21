@@ -1,6 +1,7 @@
 package com.example.rentcar.Entity;
 
 
+import com.example.rentcar.model.OrderStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,6 +31,8 @@ public class OrderEntity {
     private LocalDate dateOfFinishRentCar;
     private String additionalInformation;
     private BigDecimal orderCost;
+    private  boolean orderCompleted;
+    private OrderStatus orderStatus;
 
 
 

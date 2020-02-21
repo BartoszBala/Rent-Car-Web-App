@@ -16,7 +16,6 @@
 	 -->
 
 
-
 </head>
 <body>
 <%@ include file="/WEB-INF/components/header.jsp" %>
