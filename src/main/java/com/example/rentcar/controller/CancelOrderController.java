@@ -1,6 +1,9 @@
 package com.example.rentcar.controller;
 
 import com.example.rentcar.repository.OrderRepository;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +19,15 @@ public class CancelOrderController {
     }
 
     @PostMapping("/cancel")
-    public String cancelOrder(Long orderId){
+    public String cancelOrder(Long orderId, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        model.addAttribute("isAuthenticated",!(authentication instanceof AnonymousAuthenticationToken));
        orderRepository.delete(orderRepository.findById(orderId).get());
         System.out.println("test");
-
+        if(authentication.getName().equals("admin")){
+            return "redirect:/admin";
+        }
         return "redirect:/orders-history";
     }
 

@@ -3,6 +3,7 @@ package com.example.rentcar.controller;
 
 import com.example.rentcar.Entity.CarEntity;
 import com.example.rentcar.Entity.OrderEntity;
+import com.example.rentcar.Entity.UserEntity;
 import com.example.rentcar.model.OrderFormDto;
 import com.example.rentcar.repository.CarRepository;
 import com.example.rentcar.repository.OrderRepository;
@@ -58,7 +59,9 @@ public class AddOrderController {
         }
 
         if (orderFormService.areCorectDates()) {
-            OrderEntity orderEntity = orderService.createOrderEntity(orderFormDto, carEntity);
+            UserEntity userEntity = userRepository.findByLogin(authentication.getName());
+
+            OrderEntity orderEntity = orderService.createOrderEntity(orderFormDto, carEntity,userEntity);
 
             if (orderEntity.getDateOfFinishRentCar() == null || orderEntity.getDateOfStartRentCar() == null) {
                 model.addAttribute("car", carEntity);

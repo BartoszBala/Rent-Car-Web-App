@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
 import com.example.rentcar.Entity.OrderEntity;
+import com.example.rentcar.Entity.UserEntity;
 import com.example.rentcar.model.OrderFormDto;
 
 import com.example.rentcar.repository.CarRepository;
@@ -41,7 +42,7 @@ public class OrderService {
 
     }
 
-    public OrderEntity createOrderEntity(OrderFormDto orderFormDto, CarEntity carEntity) {
+    public OrderEntity createOrderEntity(OrderFormDto orderFormDto, CarEntity carEntity, UserEntity userEntity) {
 
         OrderEntity orderEntity;
 
@@ -57,7 +58,7 @@ public class OrderService {
         orderEntity.setAdditionalInformation(orderFormDto.getAdditionalInformation());
         orderEntity.setDateOfOrder(LocalDate.now());
         orderEntity.setCarEntity(carEntity);
-        orderEntity.setUserEntity(userRepository.findByLogin(authentication.getName()));
+        orderEntity.setUserEntity(userEntity);
 
 
         return orderEntity;

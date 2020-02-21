@@ -3,8 +3,10 @@ package com.example.rentcar.controller;
 
 import com.example.rentcar.Entity.CarEntity;
 import com.example.rentcar.Entity.OrderEntity;
+import com.example.rentcar.Entity.UserEntity;
 import com.example.rentcar.model.OrderFormDto;
 import com.example.rentcar.repository.OrderRepository;
+import com.example.rentcar.repository.UserRepository;
 import com.example.rentcar.service.OrderFormService;
 import com.example.rentcar.service.OrderService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -25,16 +27,18 @@ public class UpdateController {
     OrderFormService orderFormService;
     OrderRepository orderRepository;
     OrderService orderService;
+    UserRepository userRepository;
 
-    public UpdateController(OrderFormService orderFormService, OrderRepository orderRepository, OrderService orderService) {
+    public UpdateController(OrderFormService orderFormService, OrderRepository orderRepository, OrderService orderService, UserRepository userRepository) {
         this.orderFormService = orderFormService;
         this.orderRepository = orderRepository;
         this.orderService = orderService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/update")
     public String updateOrder(OrderFormDto orderFormDto, @RequestParam(defaultValue = "1") Long id, Model model){
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         orderFormService.setOrderFormDto(orderFormDto);
         CarEntity carEntity = orderRepository.findById(id).get().getCarEntity();
 
@@ -47,7 +51,13 @@ public class UpdateController {
         }
 
         if (orderFormService.areCorectDates()) {
-            OrderEntity orderEntity = orderService.createOrderEntity(orderFormDto, carEntity);
+           UserEntity userEntity = userRepository.findByLogin(authentication.getName());
+           if(authentication.getName().equals("admin")){
+
+               userEntity=orderRepository.findById(id).get().getUserEntity();
+           }
+
+            OrderEntity orderEntity = orderService.createOrderEntity(orderFormDto, carEntity,userEntity);
 
             if (orderEntity.getDateOfFinishRentCar() == null || orderEntity.getDateOfStartRentCar() == null) {
                 model.addAttribute("car", carEntity);
@@ -63,6 +73,10 @@ public class UpdateController {
                 orderEntity.setId(id);
                 orderRepository.save(orderEntity).getId();
 
+                if(authentication.getName().equals("admin")){
+                    return "redirect:/admin";
+
+                }
 
                 return "redirect:/orders-history";
             }
