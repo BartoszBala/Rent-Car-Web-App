@@ -25,9 +25,13 @@ import java.util.stream.Collectors;
 @Controller
 public class HomeController {
 
-    @Autowired
+   private UserContextService userContextService;
     private CarRepository carRepository;
 
+    public HomeController(UserContextService userContextService, CarRepository carRepository) {
+        this.userContextService = userContextService;
+        this.carRepository = carRepository;
+    }
 
     @GetMapping("/home")
     public String welcome(Model model) {
@@ -60,7 +64,7 @@ public class HomeController {
             model.addAttribute("cars", cars);
         }
         model.addAttribute("filterDto", filterDto);
-        model.addAttribute("isAuthenticated", !(authentication instanceof AnonymousAuthenticationToken));
+        model.addAttribute("isAuthenticated", userContextService.isAuthetnticated());
 
         return "home";
     }

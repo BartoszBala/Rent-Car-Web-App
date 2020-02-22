@@ -10,6 +10,7 @@ import com.example.rentcar.repository.OrderRepository;
 import com.example.rentcar.repository.UserRepository;
 import com.example.rentcar.service.OrderFormService;
 import com.example.rentcar.service.OrderService;
+import com.example.rentcar.service.UserContextService;
 import exception.InvalidDateFormatException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -35,20 +36,22 @@ public class AddOrderController {
     private UserRepository userRepository;
     private OrderService orderService;
     private OrderFormService orderFormService;
+    private UserContextService userContextService;
 
 
-    public AddOrderController(OrderRepository orderRepository, CarRepository carRepository, UserRepository userRepository, OrderService orderService, OrderFormService orderFormService) {
+    public AddOrderController(OrderRepository orderRepository, CarRepository carRepository, UserRepository userRepository, OrderService orderService, OrderFormService orderFormService, UserContextService userContextService) {
         this.orderRepository = orderRepository;
         this.carRepository = carRepository;
         this.userRepository = userRepository;
         this.orderService = orderService;
         this.orderFormService = orderFormService;
+        this.userContextService = userContextService;
     }
 
     @PostMapping("/add-order")
     public String doOrder(OrderFormDto orderFormDto, CarEntity carEntity, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("isAuthenticated", !(authentication instanceof AnonymousAuthenticationToken));
+
+        model.addAttribute("isAuthenticated", userContextService.isAuthetnticated());
         orderFormService.setOrderFormDto(orderFormDto);
         carEntity=carRepository.findById(carEntity.getId()).get();
         if (!orderFormService.pickUpDateIsCorrect()) {
@@ -59,7 +62,7 @@ public class AddOrderController {
         }
 
         if (orderFormService.areCorectDates()) {
-            UserEntity userEntity = userRepository.findByLogin(authentication.getName());
+            UserEntity userEntity = userRepository.findByLogin(userContextService.getUserName());
 
             OrderEntity orderEntity = orderService.createOrderEntity(orderFormDto, carEntity,userEntity);
 

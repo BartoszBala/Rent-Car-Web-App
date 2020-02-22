@@ -5,6 +5,7 @@ import com.example.rentcar.Entity.CarEntity;
 import com.example.rentcar.Entity.OrderEntity;
 import com.example.rentcar.repository.OrderRepository;
 import com.example.rentcar.repository.UserRepository;
+import com.example.rentcar.service.UserContextService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,10 +22,12 @@ public class UserOrdersController {
 
  private OrderRepository orderRepository;
  private  UserRepository userRepository;
+ private UserContextService userContextService;
 
-    public UserOrdersController(OrderRepository orderRepository, UserRepository userRepository) {
+    public UserOrdersController(OrderRepository orderRepository, UserRepository userRepository, UserContextService userContextService) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
+        this.userContextService = userContextService;
     }
 
     @GetMapping("/orders-history")
@@ -34,7 +37,7 @@ public class UserOrdersController {
         List<OrderEntity> orderEntityList = new ArrayList<>();
         orderRepository.findAllByUserEntity(userRepository.findByLogin(authentication.getName())).forEach(order -> orderEntityList.add((OrderEntity) order));
         model.addAttribute("userOrders", orderEntityList);
-        model.addAttribute("isAuthenticated",!(authentication instanceof AnonymousAuthenticationToken));
+        model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
 
 
         return "user-orders";

@@ -9,6 +9,7 @@ import com.example.rentcar.repository.OrderRepository;
 import com.example.rentcar.repository.UserRepository;
 import com.example.rentcar.service.OrderFormService;
 import com.example.rentcar.service.OrderService;
+import com.example.rentcar.service.UserContextService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,17 +29,19 @@ public class UpdateController {
     OrderRepository orderRepository;
     OrderService orderService;
     UserRepository userRepository;
+    UserContextService userContextService;
 
-    public UpdateController(OrderFormService orderFormService, OrderRepository orderRepository, OrderService orderService, UserRepository userRepository) {
+    public UpdateController(OrderFormService orderFormService, OrderRepository orderRepository, OrderService orderService, UserRepository userRepository, UserContextService userContextService) {
         this.orderFormService = orderFormService;
         this.orderRepository = orderRepository;
         this.orderService = orderService;
         this.userRepository = userRepository;
+        this.userContextService = userContextService;
     }
 
     @PostMapping("/update")
     public String updateOrder(OrderFormDto orderFormDto, @RequestParam(defaultValue = "1") Long id, Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         orderFormService.setOrderFormDto(orderFormDto);
         CarEntity carEntity = orderRepository.findById(id).get().getCarEntity();
 
@@ -51,8 +54,8 @@ public class UpdateController {
         }
 
         if (orderFormService.areCorectDates()) {
-           UserEntity userEntity = userRepository.findByLogin(authentication.getName());
-           if(authentication.getName().equals("admin")){
+           UserEntity userEntity = userRepository.findByLogin(userContextService.getUserName());
+           if(userContextService.getUserName().equals("admin")){
 
                userEntity=orderRepository.findById(id).get().getUserEntity();
            }
@@ -72,8 +75,10 @@ public class UpdateController {
                 orderEntity.setOrderCost(costOfOrder);
                 orderEntity.setId(id);
                 orderRepository.save(orderEntity).getId();
+                model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
 
-                if(authentication.getName().equals("admin")){
+                if(userContextService.getUserName().equals("admin")){
+
                     return "redirect:/admin";
 
                 }
@@ -91,6 +96,5 @@ public class UpdateController {
         }
 
 
-       // całą tę logikę należało by poprawić
     }
 }

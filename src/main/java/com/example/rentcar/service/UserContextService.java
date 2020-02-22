@@ -9,23 +9,26 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 
+@Service
 public class UserContextService {
 
 
-    Authentication authentication;
 
-    public UserContextService() {
-        this.authentication = SecurityContextHolder.getContext().getAuthentication();
-    }
 
-    @Bean
+
+
     public boolean isAuthetnticated() {
-
-        if (authentication!=null&&authentication.isAuthenticated()) {
+Authentication authentication=SecurityContextHolder.getContext().getAuthentication();       //fixme
+        if (!authentication.getPrincipal().equals("anonymousUser")) {
 
             return true;
 
         }
         return false;
+    }
+
+    public String getUserName(){
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication(); //fixme
+        return authentication.getName();
     }
 }

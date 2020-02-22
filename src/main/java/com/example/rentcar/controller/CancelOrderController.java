@@ -1,6 +1,7 @@
 package com.example.rentcar.controller;
 
 import com.example.rentcar.repository.OrderRepository;
+import com.example.rentcar.service.UserContextService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,19 +14,21 @@ public class CancelOrderController {
 
 
     private OrderRepository orderRepository;
+    private UserContextService userContextService;
 
-    public CancelOrderController(OrderRepository orderRepository) {
+    public CancelOrderController(OrderRepository orderRepository, UserContextService userContextService) {
         this.orderRepository = orderRepository;
+        this.userContextService = userContextService;
     }
 
     @PostMapping("/cancel")
     public String cancelOrder(Long orderId, Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        model.addAttribute("isAuthenticated",!(authentication instanceof AnonymousAuthenticationToken));
+
+        model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
        orderRepository.delete(orderRepository.findById(orderId).get());
         System.out.println("test");
-        if(authentication.getName().equals("admin")){
+        if(userContextService.getUserName().equals("admin")){
             return "redirect:/admin";
         }
         return "redirect:/orders-history";

@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-3">
                     <h4>Order successful</h4>
-                    <h2>Total ost: ${cost}</h2>
+                    <h2>Total cost: ${cost}</h2>
                     <h2>Your Number of order: ${orderNumber}</h2>
 
                 </div>

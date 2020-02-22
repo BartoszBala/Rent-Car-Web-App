@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface CarRepository extends CrudRepository<CarEntity,Long> {
 
     List<CarEntity> findByCarTypeIn(List<CarType> types);
-
 List<CarEntity> findByCarTypeInAndBrandIn(List<CarType> types, List<Brand> brands);
+
+
 }

@@ -4,8 +4,8 @@
             <a class="navbar-brand" href="/home">RentCar</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/menagment">Menagment</a></li>
-            <li><a href="/admin">Admin</a></li>
+            <li><a href="/menagment">For Staff Only</a></li>
+            <li><a href="/admin">For Admin Only</a></li>
             <li><a href="/orders-history">Your orders</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

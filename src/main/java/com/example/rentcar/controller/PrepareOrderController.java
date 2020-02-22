@@ -5,6 +5,7 @@ import com.example.rentcar.Entity.CarEntity;
 import com.example.rentcar.Entity.OrderEntity;
 import com.example.rentcar.model.OrderFormDto;
 import com.example.rentcar.repository.CarRepository;
+import com.example.rentcar.service.UserContextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,16 +25,17 @@ public class PrepareOrderController {
 
     CarRepository carRepository;
     OrderFormDto orderFormDto;
+    UserContextService userContextService;
 
-    public PrepareOrderController(CarRepository carRepository, OrderFormDto orderFormDto) {
+    public PrepareOrderController(CarRepository carRepository, OrderFormDto orderFormDto, UserContextService userContextService) {
         this.carRepository = carRepository;
         this.orderFormDto = orderFormDto;
+        this.userContextService = userContextService;
     }
 
     @PostMapping("/prepare-order")
     public String doOrder(Model model, CarEntity carEntity) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("isAuthenticated",!(authentication instanceof AnonymousAuthenticationToken));
+        model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
 
         System.out.println(carEntity);
         model.addAttribute("orderFormDto", orderFormDto);

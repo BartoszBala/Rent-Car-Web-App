@@ -4,6 +4,7 @@ package com.example.rentcar.controller;
 import com.example.rentcar.Entity.OrderEntity;
 import com.example.rentcar.repository.OrderRepository;
 import com.example.rentcar.repository.UserRepository;
+import com.example.rentcar.service.UserContextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,13 +20,12 @@ import java.util.List;
 public class AdminController {
 
     private OrderRepository orderRepository;
+    private UserContextService userContextService;
 
-    @Autowired
-    public AdminController(OrderRepository orderRepository) {
+    public AdminController(OrderRepository orderRepository, UserContextService userContextService) {
         this.orderRepository = orderRepository;
+        this.userContextService = userContextService;
     }
-
-
 
     @GetMapping("/admin")
     public String forwardToAdminPage(Model model){
@@ -34,7 +34,7 @@ public class AdminController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         orderRepository.findAll().forEach(order->orders.add(order));
         model.addAttribute("orders",orders);
-        model.addAttribute("isAuthenticated",!(authentication instanceof AnonymousAuthenticationToken));
+        model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
         return "admin";
     }
 }

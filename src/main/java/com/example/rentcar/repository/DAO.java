@@ -63,15 +63,18 @@ public class DAO {
 
         UserEntity userEntity1 = UserEntity.builder().login("janek").password(passwordEncoder.encode("janek")).street("Łowicka 1").city("Skierniewice").postCode("90-000").phoneNumber("+48 900900900")
                 .email("janek@wp.pl").firstName("Jan").lastName("Kot").roles("USER").permissions("").actived(1).build();
+        UserEntity disactivedUser = UserEntity.builder().login("maria").password(passwordEncoder.encode("maria")).street("Prosta 12").city("Pabianice").postCode("91-000").phoneNumber("+48 600999900")
+                .email("janek@wp.pl").firstName("Maria").lastName("Łopacińska").roles("USER").permissions("").actived(0).build();
         UserEntity userEntity2 = UserEntity.builder().login("bartek").password(passwordEncoder.encode("bartek")).street("Pucka").city("Kraków").postCode("60-120").phoneNumber("+48 800900900")
                 .email("bartek@wp.pl").firstName("Bartosz").lastName("Bala").roles("USER").permissions("").actived(1).build();
-        UserEntity admin = UserEntity.builder().login("admin").password(passwordEncoder.encode("admin1")).roles("ADMIN").permissions("ACCESS_TEST1,ACCESS_TES2").actived(1).build();
-        UserEntity employee = UserEntity.builder().login("menager").password(passwordEncoder.encode("menager1")).roles("MANAGER").permissions("ACCESS_TEST1").actived(1).build();
+        UserEntity admin = UserEntity.builder().login("admin").firstName("ADMIN").password(passwordEncoder.encode("admin1")).roles("ADMIN").permissions("ACCESS_TEST1,ACCESS_TES2").actived(1).build();
+        UserEntity employee = UserEntity.builder().login("tomek").firstName("Tomasz").lastName("Wójcik").email("tomek@rentcar.com").phoneNumber("+48602604056").password(passwordEncoder.encode("tomek1")).roles("EMPLOYEE").permissions("ACCESS_TEST1").actived(1).build();
         //save to db
         userRepository.save(userEntity1);
         userRepository.save(userEntity2);
         userRepository.save(admin);
         userRepository.save(employee);
+        userRepository.save(disactivedUser);
         this.orderRepository.deleteAll();
         OrderEntity orderEntity1 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(6)).dateOfStartRentCar(LocalDate.now().minusDays(5)).dateOfFinishRentCar(LocalDate.now().minusDays(3))
                 .carEntity(carEntity2).userEntity(userEntity1).additionalInformation("I nead automatical gearbox").orderCost(BigDecimal.valueOf(500.5)).orderCompleted(true).orderStatus(OrderStatus.COMPLETED).build();
