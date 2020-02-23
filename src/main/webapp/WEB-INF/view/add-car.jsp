@@ -77,7 +77,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path = "millage">millage</form:label>
+                            <form:label path = "millage">mileage</form:label>
                         </td>
                         <td>
                             <form:input path = "millage" />
@@ -86,7 +86,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path = "power">power</form:label>
+                            <form:label path = "power">enginePower</form:label>
                         </td>
                         <td>
                             <form:input path = "power" />

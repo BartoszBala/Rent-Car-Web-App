@@ -39,18 +39,18 @@ public class DAO {
     public void createMockDataBases() {
         this.userRepository.deleteAll();
         CarEntity carEntity1 = CarEntity.builder().brand(Brand.AUDI).model("A4").carColour(CarColour.BLACK).id(1L)
-                .millage(10000).price(100).carType(CarType.COMBI).vin("121453iu111").power(200)
+                .mileage(10000).price(100).carType(CarType.COMBI).vin("121453iu111").enginePower(200)
                 .imagePath("/resources/static/images/AUDI.png").build();
         CarEntity carEntity2 = CarEntity.builder().brand(Brand.BMW).model("X3").carColour(CarColour.RED).id(2L)
-                .millage(12000).price(200).carType(CarType.SUV).vin("121153iu111").power(150).imagePath("/resources/static/images/BMW.png").build();
+                .mileage(12000).price(200).carType(CarType.SUV).vin("121153iu111").enginePower(150).imagePath("/resources/static/images/BMW.png").build();
         CarEntity carEntity3 = CarEntity.builder().brand(Brand.OPEL).model("TRAFFIC").carColour(CarColour.WHITE).id(3L)
-                .millage(12500).price(300).carType(CarType.BUS).vin("235153iu1d11").power(160).imagePath("/resources/static/images/OPEL.png").build();
+                .mileage(12500).price(300).carType(CarType.BUS).vin("235153iu1d11").enginePower(160).imagePath("/resources/static/images/OPEL.png").build();
         CarEntity carEntity4 = CarEntity.builder().brand(Brand.PORSCHE).model("911").carColour(CarColour.WHITE).id(4L)
-                .millage(7800).price(1500).carType(CarType.SPORT).vin("7438753iu1d11").power(400).imagePath("/resources/static/images/PORSCHE.png").build();
+                .mileage(7800).price(1500).carType(CarType.SPORT).vin("7438753iu1d11").enginePower(400).imagePath("/resources/static/images/PORSCHE.png").build();
         CarEntity carEntity5 = CarEntity.builder().brand(Brand.FIAT).model("TIPO").carColour(CarColour.WHITE).id(5L)
-                .millage(9500).price(120).carType(CarType.SEDAN).vin("7444753iu1d11").power(110).imagePath("/resources/static/images/tipo.png").build();
+                .mileage(9500).price(120).carType(CarType.SEDAN).vin("7444753iu1d11").enginePower(110).imagePath("/resources/static/images/tipo.png").build();
         CarEntity carEntity6 = CarEntity.builder().brand(Brand.MERCEDES).model("VITO").carColour(CarColour.GREY).id(6L)
-                .millage(45000).price(300).carType(CarType.BUS).vin("1444753iu1d11").power(150).imagePath("/resources/static/images/MERCEDES.png").build();
+                .mileage(45000).price(300).carType(CarType.BUS).vin("1444753iu1d11").enginePower(150).imagePath("/resources/static/images/MERCEDES.png").build();
 
         carRepository.save(carEntity1);
         carRepository.save(carEntity2);

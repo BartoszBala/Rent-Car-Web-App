@@ -44,7 +44,7 @@
             <td>  ${car.vin} </td>
             <td>  ${car.brand}  </td>
             <td>${car.model}</td>
-            <td>${car.millage}</td>
+            <td>${car.mileage}</td>
             <td>${car.carType}</td>
             <td>${car.carColour}</td>
 

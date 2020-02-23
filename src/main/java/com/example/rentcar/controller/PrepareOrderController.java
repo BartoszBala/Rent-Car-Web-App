@@ -38,10 +38,8 @@ public class PrepareOrderController {
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
         model.addAttribute("user",userContextService.getUserName());
 
-        System.out.println(carEntity);
         model.addAttribute("orderFormDto", orderFormDto);
         CarEntity car = carRepository.findById(carEntity.getId()).get();
-        System.out.println(car.getId());
         model.addAttribute("car", car);
         return "order";
     }

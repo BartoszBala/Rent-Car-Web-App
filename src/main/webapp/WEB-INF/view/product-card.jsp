@@ -25,29 +25,29 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 sidebar">
+        <div class="col-sm-2 sidebar">
 <%--            <%@include file="/WEB-INF/components/filter.jsp"%>--%>
 
 
         </div>
-        <div class="col-md-8 offset-md-4 content">
+        <div class="col-sm-10 content">
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-sm-5">
                         <img src="${car.imagePath}" width="222" height="192"/>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-sm-4">
                         <h3><a href="/show-car?id=${car.id}" style="color: #b6b8b6">${car.brand} ${car.model}</a></h3>
                         <h6>Typ: ${car.carType}</h6>
-                        <h6>Przebieg: ${car.millage}</h6>
-                        <h6>Moc [KM]: ${car.power}</h6>
+                        <h6>Przebieg: ${car.mileage}</h6>
+                        <h6>Moc [KM]: ${car.enginePower}</h6>
 
                     </div>
                     <fmt:setLocale value="pl_PL"/>
-                    <div class="col-md-2"><fmt:formatNumber type="currency" minFractionDigits="2">
-                        ${car.price}</fmt:formatNumber>
+                    <div class="col-sm-1">Cost <fmt:formatNumber type="currency" minFractionDigits="2">
+                       ${car.price}</fmt:formatNumber>
                         <form action="/prepare-order" method="post" modelAttribute="carEntity">
-                            <button type="submit" class="btn btn-primary"name="id" value="${car.id}">Złóż zamówienie</button>
+                            <button type="submit" class="btn btn-primary"name="id" value="${car.id}">Rent</button>
                         </form>
                     </div>
                 </div>

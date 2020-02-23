@@ -25,8 +25,8 @@ public class CarEntity {
     private Brand brand;
     private String model;
     private CarType carType;
-    private double power;
-    private double millage;
+    private double enginePower;
+    private double mileage;
     private CarColour carColour;
     private double price;
     private String imagePath;

@@ -23,7 +23,7 @@ public class CarDto {
     private double power;
     @Digits(integer = 6, fraction = 0, message = "wprowadz wartosc z przedziału 0 do 999999")
     private double millage;
-    @Digits(integer = 4, fraction = 2,message = "wprowadz wartosc z przedziału 100.00 do 10000.00")
+    @DecimalMin(value="100.00",message = "wprowadz wartosc z przedziału 100.00 do 10000.00")
     private double price;
     @NotNull(message = "wybierz markę")
     private Brand brand;

@@ -1,24 +1,18 @@
 package com.example.rentcar.service;
 
 import com.example.rentcar.Entity.CarEntity;
-
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
-
 import com.example.rentcar.Entity.OrderEntity;
 import com.example.rentcar.Entity.UserEntity;
 import com.example.rentcar.model.OrderFormDto;
-
 import com.example.rentcar.repository.CarRepository;
 import com.example.rentcar.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 

@@ -30,7 +30,7 @@
         <th scope="col">Role</th>
         <th scope="col">Phone</th>
         <th scope="col">Email</th>
-        <th scope="col">IsActived</th>
+        <th scope="col">Active</th>
         <th scope="col">Total value of orders</th>
         <th scope="col"></th>
     </tr>

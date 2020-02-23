@@ -25,6 +25,7 @@ public class ShowCarController {
 
         model.addAttribute("car", carRepository.findById(id).get());
         model.addAttribute("user",userContextService.getUserName());
+        model.addAttribute("user", userContextService.getUserName());
 
         return "product-card";
     }

@@ -26,8 +26,8 @@
     <tr>
         <th scope="col">No.</th>
         <th scope="col">Date of Order</th>
-        <th scope="col">pick up Day</th>
-        <th scope="col">drop off Day</th>
+        <th scope="col">Rent day</th>
+        <th scope="col">Return day</th>
         <th scope="col">Car</th>
         <th scope="col">Total Cost</th>
     </tr>
