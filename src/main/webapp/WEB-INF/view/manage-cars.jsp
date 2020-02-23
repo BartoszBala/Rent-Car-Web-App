@@ -47,27 +47,6 @@
             <td>${car.millage}</td>
             <td>${car.carType}</td>
             <td>${car.carColour}</td>
-            <td>
-                    <%--                    <c:set var="status" value="1"></c:set>--%>
-                <c:if test="${user.actived==1&&!user.login.equals('admin')}">
-                    <form action="/disactiveUser/${user.id}" method="GET" modelAttribute="orderId">
-                        <button style="background: red" class="btn btn-success" name="orderId" value="${order.id}">Disactive user</button>
-                    </form>
-                </c:if>
-                <c:if test="${user.actived==0}">
-                    <form action="/activeUser/${user.id}" method="GET" modelAttribute="orderId">
-                        <button class="btn btn-success" name="orderId" value="${order.id}">Active user</button>
-                    </form>
-                </c:if>
-            </td>
-
-            <td>
-                    <%--                <c:if test="${!order.orderCompleted}">--%>
-                    <%--                <form action="/cancel" method="POST" modelAttribute="orderId">--%>
-                    <%--                    <button class="btn btn-success" name="orderId" value="${order.id}">Cancel Order</button>--%>
-                    <%--                </form>--%>
-                    <%--                </c:if>--%>
-
 
         </tr>
         <c:set var="counter" value="${counter+1}"/>
@@ -76,7 +55,7 @@
     </tbody>
 </table>
 
-<a href="/add-car">
+<a href="/addcar">
     <button>Add car</button>
 </a>
 

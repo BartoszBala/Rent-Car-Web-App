@@ -27,6 +27,7 @@ public class UpdateOrderController {
         model.addAttribute("orderId",orderId);
         model.addAttribute("car",orderRepository.findById(orderId).get().getCarEntity());
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
 
         return "update-order";
     }

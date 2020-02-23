@@ -76,6 +76,7 @@ public class UpdateController {
                 orderEntity.setId(id);
                 orderRepository.save(orderEntity).getId();
                 model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+                model.addAttribute("user",userContextService.getUserName());
 
                 if(userContextService.getUserName().equals("admin")){
 

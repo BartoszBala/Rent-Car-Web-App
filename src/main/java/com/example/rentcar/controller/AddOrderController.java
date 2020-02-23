@@ -52,6 +52,7 @@ public class AddOrderController {
     public String doOrder(OrderFormDto orderFormDto, CarEntity carEntity, Model model) {
 
         model.addAttribute("isAuthenticated", userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
         orderFormService.setOrderFormDto(orderFormDto);
         carEntity=carRepository.findById(carEntity.getId()).get();
         if (!orderFormService.pickUpDateIsCorrect()) {

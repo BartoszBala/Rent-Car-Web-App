@@ -47,14 +47,15 @@
                     </tr>
 
 
-                    <label for="cars">Choose a car:</label>
+              <tr>
+                  <td>                <form:label path = "brand">BRAND</form:label></td>
 
-                    <form:select id="cars" path="brand">
-                        <c:forEach items="${brands}" var="brand">
-                        <option value="brand">${brand} </option>
-                    </c:forEach>
-                    </form:select>
+    <td><form:select  path="brand">
+        <form:options cssStyle=" width: 150px" items="${brands}"></form:options>
+    </form:select>
+    </td>
 
+              </tr>
 
                     <tr>
                         <td>
@@ -64,6 +65,15 @@
                             <form:input path = "model" />
                         </td>
                         <td><form:errors cssStyle="color: red" path = "model" cssClass = "error" /></td>
+                    </tr>
+                    <tr>
+                        <td>                <form:label path = "type">CAR TYPE</form:label></td>
+
+                        <td><form:select  path="type">
+                            <form:options cssStyle=" width: 150px" items="${types}"></form:options>
+                        </form:select>
+                        </td>
+
                     </tr>
                     <tr>
                         <td>
@@ -91,6 +101,15 @@
                             <form:input path = "price" />
                         </td>
                         <td><form:errors cssStyle="color: red" path = "price" cssClass = "error" /></td>
+                    </tr>
+                    <tr>
+                        <td>                <form:label path = "colour">COLOUR</form:label></td>
+
+                        <td><form:select  path="colour">
+                            <form:options cssStyle=" width: 150px" items="${colours}"></form:options>
+                        </form:select>
+                        </td>
+
                     </tr>
 
                     <tr>

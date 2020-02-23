@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Data
@@ -28,7 +25,11 @@ public class CarDto {
     private double millage;
     @Digits(integer = 4, fraction = 2,message = "wprowadz wartosc z przedziału 100.00 do 10000.00")
     private double price;
-    @NotBlank(message = "wybierz markę")
+    @NotNull(message = "wybierz markę")
     private Brand brand;
+    @NotNull(message = "wybierz typ")
+    private CarType type;
+    @NotNull(message = "wybierz kolor")
+    private CarColour colour;
 
 }

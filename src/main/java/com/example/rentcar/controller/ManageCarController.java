@@ -31,6 +31,7 @@ public class ManageCarController {
 
         model.addAttribute("cars", cars);
         model.addAttribute("isAuthenticated", userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
         return "manage-cars";
     }
 

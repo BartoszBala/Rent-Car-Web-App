@@ -35,6 +35,7 @@ public class AdminController {
         orderRepository.findAll().forEach(order->orders.add(order));
         model.addAttribute("orders",orders);
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
         return "admin";
     }
 }

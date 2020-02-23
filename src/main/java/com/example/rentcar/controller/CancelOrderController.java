@@ -26,6 +26,7 @@ public class CancelOrderController {
 
 
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
        orderRepository.delete(orderRepository.findById(orderId).get());
         System.out.println("test");
         if(userContextService.getUserName().equals("admin")){

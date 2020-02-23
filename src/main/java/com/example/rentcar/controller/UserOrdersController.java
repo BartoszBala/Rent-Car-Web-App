@@ -38,6 +38,7 @@ public class UserOrdersController {
         orderRepository.findAllByUserEntity(userRepository.findByLogin(authentication.getName())).forEach(order -> orderEntityList.add((OrderEntity) order));
         model.addAttribute("userOrders", orderEntityList);
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
 
 
         return "user-orders";

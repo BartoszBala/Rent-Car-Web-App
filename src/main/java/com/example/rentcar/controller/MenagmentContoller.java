@@ -16,11 +16,12 @@ public class MenagmentContoller {
         this.userContextService = userContextService;
     }
 
-    @GetMapping("/menagment")
+    @GetMapping("/service")
     public String forwardToMenagment(Model model){
 
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
 
-        return "menagment";
+        return "service-page";
     }
 }

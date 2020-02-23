@@ -23,9 +23,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
-            <%--            <%@include file="/WEB-INF/component/filter.jsp"%>--%>
-
-            miejsce na filter
         </div>
         <div class="col-md-10 offset-md-2 content">
                 <div class="row">

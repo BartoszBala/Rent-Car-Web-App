@@ -36,6 +36,7 @@ public class PrepareOrderController {
     @PostMapping("/prepare-order")
     public String doOrder(Model model, CarEntity carEntity) {
         model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
 
         System.out.println(carEntity);
         model.addAttribute("orderFormDto", orderFormDto);
@@ -45,11 +46,6 @@ public class PrepareOrderController {
         return "order";
     }
 
-//    @GetMapping("/prepare-order")
-//    public String doOrder(){
-//
-//        return "order";
-//    }
 
 
 }

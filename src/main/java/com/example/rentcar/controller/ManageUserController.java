@@ -35,6 +35,7 @@ public String manageUserByAdmin(Model model){
 
     model.addAttribute("users",userEntities);
     model.addAttribute("isAuthenticated",userContextService.isAuthetnticated());
+        model.addAttribute("user",userContextService.getUserName());
 
     return "manage-user";
 }
