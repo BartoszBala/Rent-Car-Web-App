@@ -21,7 +21,7 @@
 <body>
 
 
-<%@ include file="/WEB-INF/components/header.jsp" %>
+<%@ include file="/WEB-INF/view/components/header.jsp" %>
 
 
 <h2 style="color: red">Sorry, you do not have permission to view this page.</h2>

@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<%@ include file="/WEB-INF/components/header.jsp" %>
+<%@ include file="/WEB-INF/view/components/header.jsp" %>
 
 <a class="btn btn-primary" href="/manage-users" role="button">Manage users</a>
 <a class="btn btn-primary" href="/manage-cars" role="button">Manage cars</a>

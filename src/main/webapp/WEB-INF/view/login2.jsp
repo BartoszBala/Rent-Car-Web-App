@@ -19,7 +19,7 @@
 </head>
 <body>
 <%--onload='document.loginForm.username.focus();'--%>
-<%@ include file="/WEB-INF/components/header.jsp" %>
+<%@ include file="/WEB-INF/view/components/header.jsp" %>
 
 <div style="    display: flex;
         flex-direction: row;

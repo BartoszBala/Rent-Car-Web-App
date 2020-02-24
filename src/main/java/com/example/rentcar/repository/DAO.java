@@ -44,9 +44,9 @@ public class DAO {
                 .mileage(10000).price(100).carType(CarType.COMBI).vin("121453iu111").enginePower(200)
                 .imagePath("/resources/static/images/AUDI.png").build();
         CarEntity carEntity2 = CarEntity.builder().brand(Brand.BMW).model("X3").carColour(CarColour.RED).id(2L)
-                .mileage(12000).price(200).carType(CarType.SUV).vin("121153iu111").enginePower(150).imagePath("/resources/static/images/BMW.png").build();
+                .mileage(12000).price(200).carType(CarType.SUV).vin("121153iu111").enginePower(150).imagePath("/webapp/images/BMW.png").build();
         CarEntity carEntity3 = CarEntity.builder().brand(Brand.OPEL).model("TRAFFIC").carColour(CarColour.WHITE).id(3L)
-                .mileage(12500).price(300).carType(CarType.BUS).vin("235153iu1d11").enginePower(160).imagePath("/resources/static/images/OPEL.png").build();
+                .mileage(12500).price(300).carType(CarType.BUS).vin("235153iu1d11").enginePower(160).imagePath("/webapp/images/OPEL.png").build();
         CarEntity carEntity4 = CarEntity.builder().brand(Brand.PORSCHE).model("911").carColour(CarColour.WHITE).id(4L)
                 .mileage(7800).price(1500).carType(CarType.SPORT).vin("7438753iu1d11").enginePower(400).imagePath("/resources/static/images/PORSCHE.png").build();
         CarEntity carEntity5 = CarEntity.builder().brand(Brand.FIAT).model("TIPO").carColour(CarColour.WHITE).id(5L)

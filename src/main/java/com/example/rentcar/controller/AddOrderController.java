@@ -11,21 +11,11 @@ import com.example.rentcar.repository.UserRepository;
 import com.example.rentcar.service.OrderFormService;
 import com.example.rentcar.service.OrderService;
 import com.example.rentcar.service.UserContextService;
-import exception.InvalidDateFormatException;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class AddOrderController {

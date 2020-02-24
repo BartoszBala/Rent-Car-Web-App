@@ -21,12 +21,12 @@
 <body>
 
 
-<%@ include file="/WEB-INF/components/header.jsp" %>
+<%@ include file="/WEB-INF/view/components/header.jsp" %>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2 sidebar">
-            <%@include file="/WEB-INF/components/filter.jsp"%>
+            <%@include file="/WEB-INF/view/components/filter.jsp"%>
 
 
         </div>
