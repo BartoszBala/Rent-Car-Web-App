@@ -37,7 +37,9 @@ public class DAO {
 
     @EventListener(ApplicationReadyEvent.class)
     public void createMockDataBases() {
+        this.orderRepository.deleteAll();
         this.userRepository.deleteAll();
+
         CarEntity carEntity1 = CarEntity.builder().brand(Brand.AUDI).model("A4").carColour(CarColour.BLACK).id(1L)
                 .mileage(10000).price(100).carType(CarType.COMBI).vin("121453iu111").enginePower(200)
                 .imagePath("/resources/static/images/AUDI.png").build();
@@ -75,7 +77,7 @@ public class DAO {
         userRepository.save(admin);
         userRepository.save(employee);
         userRepository.save(disactivedUser);
-        this.orderRepository.deleteAll();
+
         OrderEntity orderEntity1 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(6)).dateOfStartRentCar(LocalDate.now().minusDays(5)).dateOfFinishRentCar(LocalDate.now().minusDays(3))
                 .carEntity(carEntity2).userEntity(userEntity1).additionalInformation("I nead automatical gearbox").orderCost(BigDecimal.valueOf(500.5)).orderCompleted(true).orderStatus(OrderStatus.COMPLETED).build();
         OrderEntity orderEntity2 = OrderEntity.builder().dateOfOrder(LocalDate.now().minusDays(20)).dateOfStartRentCar(LocalDate.now().minusDays(15)).dateOfFinishRentCar(LocalDate.now().minusDays(12))
